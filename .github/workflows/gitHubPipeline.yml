@@ -29,6 +29,7 @@ on:
         required: false
         default: ''
         options:
+          - ''
           - '@caso1'
           - '@caso2'
       paralelo:
