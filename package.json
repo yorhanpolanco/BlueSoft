@@ -6,7 +6,8 @@
   "scripts": {
     "edge": "npx cucumber-js browser=edge",
     "chrome": "npx cucumber-js browser=chromium",
-    "safari": "npx cucumber-js browser=webkit"
+    "safari": "npx cucumber-js browser=webkit",
+    "postinstall": "npx playwright install --with-deps"
   },
   "keywords": [
     "automation",
