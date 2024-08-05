@@ -1,0 +1,11 @@
+{
+    "escenario1": {
+        "computer": "IBM"
+    },
+    "escenario2": {
+        "computer": "Lenovo",
+        "FechaInicio":"2024-01-01",
+        "FechaFin":"2034-01-01",
+        "Fabricante":"IBM"
+    }
+}

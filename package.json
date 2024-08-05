@@ -1,0 +1,33 @@
+{
+  "name": "automatizacion",
+  "version": "1.0.0",
+  "description": "Framework de automatizacion de Playwright, cucumber y typescript",
+  "main": "index.js",
+  "scripts": {
+    "edge": "npx cucumber-js browser=edge",
+    "chrome": "npx cucumber-js browser=chromium",
+    "safari": "npx cucumber-js browser=webkit"
+  },
+  "keywords": [
+    "automation",
+    "testing",
+    "playwright",
+    "cucumber"
+  ],
+  "author": "Yorhan Polanco",
+  "license": "ISC",
+  "devDependencies": {
+    "@playwright/test": "^1.45.2",
+    "@types/node": "^20.12.13",
+    "@types/oracledb": "^6.5.1",
+    "cucumber-html-reporter": "^7.1.1",
+    "dotenv": "^16.4.5",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.4.5"
+  },
+  "dependencies": {
+    "@cucumber/cucumber": "^10.8.0",
+    "dayjs": "^1.11.11",
+    "oracledb": "^6.5.1"
+  }
+}

@@ -1,0 +1,66 @@
+name: Playwright Tests
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+  workflow_dispatch:
+    inputs:
+      browser:
+        type: choice
+        description: 'Seleccionar browser a ejecutar'
+        required: true
+        default: 'chrome'
+        options:
+          - 'chrome'
+          - 'firefox'
+          - 'webkit'
+      feature:
+        type: choice
+        description: 'Seleccionar feature a ejecutar'
+        required: false
+        default: ''
+        options:
+          - ''
+          - 'computerDataBase'
+      tags:
+        type: choice
+        description: 'Seleccionar tags a ejecutar'
+        required: false
+        default: ''
+        options:
+          - '@caso1'
+          - '@caso2'
+      paralelo:
+        type: string
+        description: 'Insertar cantidad de ejeuccion en paralelo'
+        required: false
+        default: ''         
+jobs:
+  test:
+    timeout-minutes: 60
+    runs-on: ubuntu-latest
+    steps:
+    - name: Clonar repositorio
+      uses: actions/checkout@v4
+    - name: Configurar Node.js  
+      uses: actions/setup-node@v4
+      with:
+        node-version: lts/*
+    - name: Install dependencies
+      run: npm ci 
+    - name: Install Playwright Browsers
+      run: npx playwright install --with-deps
+    - name: Set environment variable
+      run: echo "HEADLESS=true" >> $GITHUB_ENV  
+    - name: Run Playwright tests
+      run: npm run ${{ github.event.inputs.browser || 'chrome'}} feature=${{ github.event.inputs.feature || 'computerDataBase' }} tags=${{ github.event.inputs.tags}} paralelo=${{ github.event.inputs.paralelo }}
+    - name: Mostrar resultado
+      uses: actions/upload-artifact@v4
+      if: always()
+      with:
+        name: test-results
+        path: |
+          src/test-result/reports/*.html
+          logs/*.txt
+        retention-days: 30
